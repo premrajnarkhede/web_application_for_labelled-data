@@ -1,0 +1,42 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<style>
+  .last-entry
+  {
+    clear:left;
+  }
+</style>
+<div class="page-header" ng-app="TrainSet" ng-controller="TrainSetController">
+  <h1> Seed</h1>
+  {% raw %}
+  Seed words1 <input id='tags1' type="text" name="fname" data-role="tagsinput"><br>
+  Seed words2 <input id='tags2' type="text" name="lname" data-role="tagsinput"><br>
+  <button type="button" class='btn btn-default' ng-click='generateData()'>Generate set</button>
+  <h1> Document</h1>
+  <div class="alert" ng-show='errorFlag=="True"'>
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Warning!</strong> Last Entry wasn't stored properly
+  </div>
+  <blockquote ng-bind-html=quote>
+  <!--{{quote}}-->
+  </blockquote>
+  <div>
+    {{id}}
+  <div>
+  
+  <div class="btn-group">
+  <button type="button" class="btn btn-primary" ng-repeat='cat in categories' ng-click=updateData(quote,cat,id)>{{cat}}</button>
+  </div>
+  <div>
+    <button type="button" class="btn btn-danger btn-small last-entry" ng-click=redoData()>Redo Last Entry</button>
+  </div>
+  <h1> Manage Categories</h1>
+  
+  <input id="categories" type="text" name="lname" data-role="tagsinput" ><br>
+  <button type="button" class='btn btn-default' ng-click='categoryUpdate()'>Update Categories</button>
+  {% endraw %}
+</div>
+
+
+{% endblock %}
